@@ -1,49 +1,38 @@
 import Link from 'next/link';
+import Image from 'next/image';
+import { PageProps } from '../../models/page-props';
 
-const EventsPage = () => {
+const EventsPage = ({ categories }: PageProps) => {
   return (
-    <div>
+    <>
       <h1>Events Page</h1>
       <div>
-        <Link href="">
-          <div>
-            <img src="" alt="" />
-            <h2>Events in London</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo,
-              quibusdam facere sunt error voluptates provident nisi eum aut
-              esse! Atque laboriosam corporis voluptate ut enim id beatae
-              possimus architecto quae?
-            </p>
-          </div>
-        </Link>
-        <Link href="">
-          <div>
-            <img src="" alt="" />
-            <h2>Events in San-Francisco</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo,
-              quibusdam facere sunt error voluptates provident nisi eum aut
-              esse! Atque laboriosam corporis voluptate ut enim id beatae
-              possimus architecto quae?
-            </p>
-          </div>
-        </Link>
-        <Link href="">
-          <div>
-            <img src="" alt="" />
-            <h2>Events in Barcelona</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo,
-              quibusdam facere sunt error voluptates provident nisi eum aut
-              esse! Atque laboriosam corporis voluptate ut enim id beatae
-              possimus architecto quae?
-            </p>
-          </div>
-        </Link>
+        {categories.map((category) => (
+          <Link href={`/events/${category.id}`} key={category.id} passHref>
+            <div>
+              <Image
+                src={category.image}
+                alt={category.title}
+                width="200"
+                height="200"
+              />
+              <h2>{category.title}</h2>
+            </div>
+          </Link>
+        ))}
       </div>
-    </div>
+    </>
   );
 };
 
 export default EventsPage;
+
+export async function getStaticProps() {
+  const { events_categories } = await import('../../data/data.json');
+
+  return {
+    props: {
+      categories: events_categories,
+    },
+  };
+}

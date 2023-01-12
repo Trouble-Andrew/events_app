@@ -2,14 +2,10 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Inter } from '@next/font/google';
+import { PageProps } from '../models/page-props';
 import styles from '../styles/Home.module.css';
-import { EventCategory } from '../models/event-category';
 
 const inter = Inter({ subsets: ['latin'] });
-
-interface PageProps {
-  categories: EventCategory[];
-}
 
 export default function Home({ categories }: PageProps) {
   return (
@@ -23,14 +19,14 @@ export default function Home({ categories }: PageProps) {
       <header>
         <nav>
           {/* <Image src="" alt="" /> */}
-          <Link href="/">Home</Link>
-          <Link href="/events">Events</Link>
-          <Link href="/about-us">About us</Link>
+          <Link href="/" passHref>Home</Link>
+          <Link href="/events" passHref>Events</Link>
+          <Link href="/about-us" passHref>About us</Link>
         </nav>
       </header>
       <main className={styles.main}>
         {categories.map((category) => (
-          <Link href={`/events/${category.id}`} key={category.id}>
+          <Link href={`/events/${category.id}`} key={category.id} passHref>
             <div>
               <Image
                 src={category.image}
