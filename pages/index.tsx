@@ -3,10 +3,15 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Inter } from '@next/font/google';
 import styles from '../styles/Home.module.css';
+import { EventCategory } from '../models/event-category';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export default function Home() {
+interface PageProps {
+  categories: EventCategory[];
+}
+
+export default function Home({ categories }: PageProps) {
   return (
     <>
       <Head>
@@ -17,33 +22,39 @@ export default function Home() {
       </Head>
       <header>
         <nav>
-          <img src="" alt="" />
+          {/* <Image src="" alt="" /> */}
           <Link href="/">Home</Link>
           <Link href="/events">Events</Link>
           <Link href="/about-us">About us</Link>
         </nav>
       </header>
       <main className={styles.main}>
-        <Link href="">
-          <div>
-            <img src="" alt="" />
-            <h2>Events in London</h2>
-          </div>
-        </Link>
-        <Link href="">
-          <div>
-            <img src="" alt="" />
-            <h2>Events in San-Francisco</h2>
-          </div>
-        </Link>
-        <Link href="">
-          <div>
-            <img src="" alt="" />
-            <h2>Events in Barcelona</h2>
-          </div>
-        </Link>
+        {categories.map((category) => (
+          <Link href={`/events/${category.id}`} key={category.id}>
+            <div>
+              <Image
+                src={category.image}
+                alt={category.title}
+                width="200"
+                height="100"
+              />
+              <h2>{category.title}</h2>
+              <p>{category.description}</p>
+            </div>
+          </Link>
+        ))}
       </main>
       <footer>Footer</footer>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const { events_categories } = await import('../data/data.json');
+
+  return {
+    props: {
+      categories: events_categories,
+    },
+  };
 }
