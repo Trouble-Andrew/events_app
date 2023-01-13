@@ -1,13 +1,9 @@
 import Head from 'next/head';
-import { Inter } from '@next/font/google';
+
 import { PageProps } from '../models/page-props';
 // import Button from '@mui/material/Button';
 import styles from '../styles/Home.module.scss';
 import HomePage from '../src/components/HomePage/HomePage';
-import Footer from '../src/components/Footer/Footer';
-import Header from '../src/components/Header/Header';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export default function Home({ categories }: PageProps) {
   return (

@@ -1,27 +1,38 @@
+import { Box, Grid } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Link from 'next/link';
-import Image from 'next/image';
 import { PageProps } from '../../models/page-props';
+import EventPreviewCard from '../../src/components/EventPreviewCard/EventPreviewCard';
 
 const EventsPage = ({ categories }: PageProps) => {
+  const matchesMd = useMediaQuery('(max-width:1200px)');
+
   return (
-    <>
-      <h1>Events Page</h1>
-      <div>
+    <Box maxWidth={matchesMd ? '100%' : '80%'} margin="0 auto">
+      <Grid container spacing={4}>
         {categories.map((category) => (
-          <Link href={`/events/${category.id}`} key={category.id} passHref>
-            <div>
-              <Image
-                src={category.image}
-                alt={category.title}
-                width="200"
-                height="200"
+          <Grid
+            item
+            md={4}
+            xs={12}
+            key={category.id}
+            sx={{ display: 'flex', justifyContent: 'center' }}
+          >
+            <Link
+              href={`/events/${category.id}`}
+              passHref
+              style={{ width: '100%' }}
+            >
+              <EventPreviewCard
+                title={category.title}
+                description={category.description}
+                image={category.image}
               />
-              <h2>{category.title}</h2>
-            </div>
-          </Link>
+            </Link>
+          </Grid>
         ))}
-      </div>
-    </>
+      </Grid>
+    </Box>
   );
 };
 
