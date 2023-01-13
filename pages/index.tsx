@@ -1,9 +1,11 @@
 import Head from 'next/head';
-import Link from 'next/link';
-import Image from 'next/image';
 import { Inter } from '@next/font/google';
 import { PageProps } from '../models/page-props';
-import styles from '../styles/Home.module.css';
+// import Button from '@mui/material/Button';
+import styles from '../styles/Home.module.scss';
+import HomePage from '../src/components/HomePage/HomePage';
+import Footer from '../src/components/Footer/Footer';
+import Header from '../src/components/Header/Header';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -16,31 +18,8 @@ export default function Home({ categories }: PageProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header>
-        <nav>
-          {/* <Image src="" alt="" /> */}
-          <Link href="/" passHref>Home</Link>
-          <Link href="/events" passHref>Events</Link>
-          <Link href="/about-us" passHref>About us</Link>
-        </nav>
-      </header>
-      <main className={styles.main}>
-        {categories.map((category) => (
-          <Link href={`/events/${category.id}`} key={category.id} passHref>
-            <div>
-              <Image
-                src={category.image}
-                alt={category.title}
-                width="200"
-                height="100"
-              />
-              <h2>{category.title}</h2>
-              <p>{category.description}</p>
-            </div>
-          </Link>
-        ))}
-      </main>
-      <footer>Footer</footer>
+
+      <HomePage categories={categories} />
     </>
   );
 }
