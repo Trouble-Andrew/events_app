@@ -12,7 +12,7 @@ const MainLayout: React.FC<PropsWithChildren<MainLayoutProps>> = (props) => {
       <div className={styles.wrapper}>
         <Header />
         <main className={styles.main}>
-          <Container maxWidth="xl">{props.children}</Container>
+          <Container maxWidth="lg">{props.children}</Container>
         </main>
         <Footer />
       </div>

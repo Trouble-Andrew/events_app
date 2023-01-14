@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import { Event } from '../../../models/event';
 
-type EventPreviewCardProps = Pick<Event, 'title' | 'image' | 'description'>;
+type EventPreviewCardProps = Pick<Event, 'title' | 'image'>;
 
 function EventPreviewCard({ title, image }: EventPreviewCardProps) {
   return (

@@ -6,7 +6,7 @@ import styles from './Header.module.scss';
 const Header = () => {
   return (
     <header className={styles.header}>
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <div className={styles.wrapper}>
           <Image
             src={'/images/logo_black.png'}
@@ -33,7 +33,7 @@ const Header = () => {
               </li>
             </ul>
           </nav>
-          <h1 className={styles.title}>Welcome to Events</h1>
+          <h1 className={styles.title}>Worldwide Events</h1>
         </div>
       </Container>
     </header>

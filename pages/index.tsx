@@ -1,8 +1,5 @@
 import Head from 'next/head';
-
 import { PageProps } from '../models/page-props';
-// import Button from '@mui/material/Button';
-import styles from '../styles/Home.module.scss';
 import HomePage from '../src/components/HomePage/HomePage';
 
 export default function Home({ categories }: PageProps) {

@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { PageProps } from '../../../models/page-props';
 import styles from './HomePage.module.scss';
 import CategoryCard from '../CategoryCard/CategoryCard';

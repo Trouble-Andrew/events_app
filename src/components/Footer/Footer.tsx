@@ -1,9 +1,12 @@
+import { Typography } from '@mui/material';
 import styles from './Footer.module.scss';
 
 const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <p>&#169; 2023 Andrei Terekhov</p>
+      <Typography variant="body2" color="#fff" fontSize={'1rem'}>
+        &#169; 2023 Andrei Terekhov
+      </Typography>
     </footer>
   );
 };

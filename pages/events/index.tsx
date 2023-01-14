@@ -25,7 +25,6 @@ const EventsPage = ({ categories }: PageProps) => {
             >
               <EventPreviewCard
                 title={category.title}
-                description={category.description}
                 image={category.image}
               />
             </Link>
